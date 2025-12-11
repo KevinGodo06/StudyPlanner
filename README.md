@@ -9,4 +9,5 @@ studyplanner.altervista.org
 
 QUESTO PROGETTO É SOLTANTO UN ESPERIMENTO, NONCHÈ IL PROJECT WORK PER L'ESAME DI QUINTA SUPERIORE.
 NON RAPPRESENTA LE MIE ATTUALI CAPACITÀ IN ALCUN MODO.
+
 Questo progetto per funzionare necessita della libreria di api di google scaricata dentro una cartella chiamata googleAPI, e ovviamente del vostro clientid e del vostro secretq.
