@@ -106,11 +106,15 @@
                         <div class="user-name">
                             <p class="userName"><?php echo $_SESSION["user"]["username"]; ?></p> <!--max 23 caratteri-->
                         </div>
-                        <img src="images/usersImg/<?php 
+                        <img src="<?php
                             if(!isset($_SESSION['user']['imgProfilo'])) {
-                                echo "defaultImg.png";
+                                echo "images/usersImg/defaultImg.png";
                             } else {
-                                echo $_SESSION['user']['id'] . "." . $_SESSION['user']['imgProfilo']; 
+                                if(substr($_SESSION['user']['imgProfilo'], 0, 4) == "http") {
+                                    echo $_SESSION['user']['imgProfilo'];
+                                } else {
+                                    echo "images/usersImg/" . $_SESSION['user']['id'] . "." . $_SESSION['user']['imgProfilo'];
+                                }
                             }
                         ?>" class="user-image" height="60px" alt="user image">
                     </div>
@@ -143,60 +147,6 @@
                                         echo "\t\t\t\t\t\t\t\t</tr> \n";
                                     }
                                 ?>
-                                <!--<tr>
-                                    <td>1° ora</td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                </tr>
-                                <tr>
-                                    <td>2° ora</td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                </tr>
-                                <tr>
-                                    <td>3° ora</td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                </tr>
-                                <tr>
-                                    <td>4° ora</td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                </tr>
-                                <tr>
-                                    <td>5° ora</td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                </tr>
-                                <tr>
-                                    <td>6° ora</td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                    <td class="td-orario"></td>
-                                </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -286,6 +236,7 @@
                                                     <p class="nome-materia">' . $materia["nome"] . '</p>
                                                     <div class="media-materia">' . $materia["media"] . '</div>
                                                     <span class="id-materia" style="display: none;">' . $materia["ID"] . '</span>
+                                                    <span class="obiettivo-materia" style="display: none;">' . $materia["obiettivo"] . '</span>
                                                 </div>';
                                         }
 
@@ -303,28 +254,29 @@
                                 <div class="main-content-voti-obiettivo">
                                     <div class="andamento">
                                         <div class="andamento-materia">
-                                            <p class="nome-materia" id="materia-nome-obiettivo">Matematica</p>
-                                            <div class="media-materia" id="materia-valore-obiettivo">7.5</div>
+                                            <p class="nome-materia" id="materia-nome-obiettivo"></p>
+                                            <div class="media-materia" id="materia-valore-obiettivo"></div>
                                         </div>
                                         <div id="andamento-materia-crescita"></div>
                                     </div>
                                     <div class="obiettivo">
-                                        <div>
-                                            <p id="p-obiettivo">Imposta obiettivo</p>
+                                        <div class="imposta-obiettivo">
+                                            <p id="p-obiettivo">Imposta obiettivo
                                             <div class="div-add-button-obiettivo">
                                                 <button class="add-button" id="add-button-obiettivo">+</button>
                                             </div>
+                                            </p>
 
                                         </div>
                                         <div>
-                                            <button class="dettagli-obiettivo"> Dettagli obiettivo</button>
+                                            <button class="dettagli-obiettivo" id="dettagli-obiettivo"> Dettagli obiettivo</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="main-content-voti-corrente">
                                 <div class="div-title" id="div-title-materia-voto">
-                                    
+                                    <br>
                                     <hr class="hr-calendario">
                                 </div>
                                 <div class="div-add-button">
@@ -359,11 +311,15 @@
                                     <p><?php echo $_SESSION["user"]["email"]; ?></p> 
                                 </div>
                                 <div>
-                                    <img src="images/usersImg/<?php 
+                                    <img src="<?php
                                         if(!isset($_SESSION['user']['imgProfilo'])) {
-                                            echo "defaultImg.png";
+                                            echo "images/usersImg/defaultImg.png";
                                         } else {
-                                            echo $_SESSION['user']['id'] . "." . $_SESSION['user']['imgProfilo']; 
+                                            if(substr($_SESSION['user']['imgProfilo'], 0, 4) == "http") {
+                                                echo $_SESSION['user']['imgProfilo'];
+                                            } else {
+                                                echo "images/usersImg/" . $_SESSION['user']['id'] . "." . $_SESSION['user']['imgProfilo'];
+                                            }
                                         }
                                     ?>" class="impostazioni-img" height="150px" alt="user image">
                                 </div>
@@ -377,11 +333,53 @@
                                 Impostazioni applicazione
                                 <hr class="hr-calendario">
                             </div>
+                            <div class="sub-div-title">
+                                Gestione orario
+                                <hr class="hr-calendario">
+                            </div>
                             <div class="content-applicazione">
-                                <button class="default-button" id="esporta-orario-button">Esporta orario</button>
+                                <button class="default-button impostazioni-button" id="esporta-orario-button">
+                                    Esporta orario
+                                </button>
                                 <input type="file" class="default-button" id="fileInput" accept=".json">
-                                <button class="default-button" id="importa-orario-button">Importa orario</button>
-                                <button class="default-button elimina-button" id="elimina-orario-button">Elimina orario</button>
+                                <button class="default-button impostazioni-button" id="importa-orario-button">
+                                    Importa orario
+                                </button>
+                                <button class="default-button elimina-button impostazioni-button" id="elimina-orario-button">
+                                    Elimina orario
+                                </button>
+                            </div>
+                            <div class="sub-div-title">
+                                Gestione impegni
+                                <hr class="hr-calendario">
+                            </div>
+                            <div class="content-applicazione">
+                                <button class="default-button impostazioni-button" id="esporta-impegni-button">
+                                    Esporta impegni
+                                </button>
+                                <input type="file" class="default-button" id="fileInput" accept=".json">
+                                <button class="default-button impostazioni-button" id="importa-impegni-button">
+                                    Importa impegni
+                                </button>
+                                <button class="default-button elimina-button impostazioni-button" id="elimina-impegni-button">
+                                    Elimina impegni
+                                </button>
+                            </div>
+                            <div class="sub-div-title">
+                                Gestione voti
+                                <hr class="hr-calendario">
+                            </div>
+                            <div class="content-applicazione">
+                                <button class="default-button impostazioni-button" id="esporta-impegni-button">
+                                    Esporta voti
+                                </button>
+                                <input type="file" class="default-button" id="fileInput" accept=".json">
+                                <button class="default-button impostazioni-button" id="importa-impegni-button">
+                                    Importa voti
+                                </button>
+                                <button class="default-button elimina-button impostazioni-button" id="elimina-impegni-button">
+                                    Elimina voti
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -521,7 +519,7 @@
 
                         <div class="inputBox">
 
-                            <div class="number-selector-box">
+                            <div class="numbers-selector-box">
                                 <span>Voto:<br>[0-10]</span>
                                 <input id="inputBoxVoto" type="number" min="0" max="10" step=".5" name="voto" placeholder="Voto">
                                 <span>Peso:<br>[0-100]</span>
@@ -531,7 +529,7 @@
                             <div class="day-selector-box">
                                 <span>Giorno</span>
                                 <input id="inputBoxDataLezione" type="date" name="dataLezione">
-                                <span>Nome</span>
+                                <span id="inputBoxNomeVotoNome">Nome</span>
                                 <input id="inputBoxNomeVoto" type="text" name="nomeVoto" placeholder="Nome">
                             </div>
                         </div>
@@ -550,40 +548,56 @@
             <!--AggiungiObiettivo -->
             <div class="container-aggiungi-obiettivo">
                 <div class="div-title">
-                    <p>Aggiungi Voto</p>
+                    <p>Modifica Obiettivo</p>
                     <hr class="hr-calendario">
                 </div>
-                <form action="scripts/aggiungiVoto.php" method="POST" class="form-aggiungi-voto">
-                    <div class="content-aggiungi-obiettivo">
-
-                        <input type="hidden" name="fk_id_materia" id="fk_id_materia">
+                
+                <div class="content-aggiungi-obiettivo">
+                    <form action="scripts/aggiungiObiettivo.php" method="POST" class="form-aggiungi-obiettivo">
+                        <input type="hidden" name="fk_id_materia_obiettivo" id="fk_id_materia_obiettivo">
 
                         <div class="inputBox">
-
                             <div class="number-selector-box">
-                                <span>Voto:<br>[0-10]</span>
-                                <input id="inputBoxVoto" type="number" min="0" max="10" step=".5" name="voto" placeholder="Voto">
-                                <span>Peso:<br>[0-100]</span>
-                                <input type="number" name="peso" min="0" max="100" placeholder="Peso">
-                            </div>
-                            
-                            <div class="day-selector-box">
-                                <span>Giorno</span>
-                                <input type="date" name="dataLezione">
-                            <input id="inputBoxNomeVoto" type="text" name="nomeVoto" placeholder="Nome">
+                                <span>Obiettivo [0-10]: </span>
+                                <input id="inputBoxVotoObiettivo" type="number" min="0" max="10" step=".5" name="votoObiettivo" placeholder="Voto">
                             </div>
                         </div>
-                        
+
                         <div class="button-box">
                             <button type="button" class="default-button elimina-button">Elimina</button>
                             <div class="spacer"></div>
                             <button class="default-button annulla-button" type="reset">Annulla</button>
-                            <input class="default-button" id="aggiungi-voto-button" type="submit" value="Aggiungi">
+                            <input class="default-button" id="aggiungi-obiettivo-button" type="submit" value="Modifica">
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
             <!-- fine AggiungiObiettivo-->
+
+            <!--DettagliObiettivo -->
+            <div class="container-dettagli-obiettivo">
+                <div class="div-title">
+                    <p>Dettagli Obiettivo</p>
+                    <hr class="hr-calendario">
+                </div>
+                
+                <div class="content-dettagli-obiettivo">
+
+                <p id="par-obiettivo">Per ottenere <span class="voto-obiettivo"></span> in <span class="materia-obiettivo"></span> hai bisogno di prendere:</p>
+                
+                <div class="result-dettagli-obiettivo">
+                    <span id="voto1"></span>x1  oppure
+                    <span id="voto2"></span>x2  oppure
+                    <span id="voto3"></span>x3 
+                </div>
+
+                    <div class="button-box">
+                        <div class="spacer"></div>
+                        <button class="default-button annulla-button" type="reset">Chiudi</button>
+                    </div>
+                </div>
+            </div>
+            <!-- fine DettagliObiettivo-->
 
             
             <!-- Overlay per l'alert -->
@@ -604,6 +618,16 @@
                         <input class="confirm-btn" id="confirmBtn-account" value="Conferma" type="submit">
                     </form>
                     <button class="cancel-btn" id="cancelBtn-account">Annulla</button>
+                </div>
+            </div>
+            <!-- Overlay per l'alert elimina account-->
+            <div class="overlay" id="alertOverlay-orario">
+                <div class="custom-alert">
+                    <p>Sei sicuro di voler eliminare il tuo orario?</p>
+                    <form>
+                        <input class="confirm-btn" id="confirmBtn-orario" value="Conferma" type="submit">
+                    </form>
+                    <button class="cancel-btn" id="cancelBtn-orario">Annulla</button>
                 </div>
             </div>
         </div>

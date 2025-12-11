@@ -27,7 +27,7 @@
     $stmt = $pdo->prepare("SELECT * FROM OraLezione WHERE giorno = :giorno AND ora = :ora AND fk_id_studente = :fk_id_studente");
     $stmt->bindValue(":giorno", $dataLezione, PDO::PARAM_STR);
     $stmt->bindValue(":ora", $oraLezione, PDO::PARAM_INT);
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"]);
     $stmt->execute();
     
     if($stmt->rowCount() > 0){
@@ -40,7 +40,7 @@
     $stmt->bindValue(":ora", $oraLezione, PDO::PARAM_INT);
     $stmt->bindValue(":nome", $nomeLezione, PDO::PARAM_STR);
     $stmt->bindValue(":colore", $color, PDO::PARAM_STR);
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"]);
 
     $stmt->execute();
     header("Location: ../index.php");

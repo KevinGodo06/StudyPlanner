@@ -7,14 +7,15 @@
         return;
     }
 
-    if(!isset($_POST["obiettivo"]) || !isset($_POST["fk_id_materia"])){
+    if(!isset($_POST["votoObiettivo"]) || !isset($_POST["fk_id_materia_obiettivo"])){
         header("Location: ../index.php");
         return;
     }
 
     $obiettivo = $_POST["votoObiettivo"];
-    $id_materia = $_POST["fk_id_materia"];
-    
+    $id_materia = $_POST["fk_id_materia_obiettivo"];
+    $_SESSION["obiettivo"] = $obiettivo . " " . $id_materia;
+
     $pdo = pdoConnection();
 
     if(!$pdo){
@@ -26,7 +27,7 @@
 
     $stmt->bindParam(":obiettivo", $obiettivo, PDO::PARAM_STR);
     $stmt->bindParam(":id_materia", $id_materia, PDO::PARAM_INT);
-    $stmt->bindParam(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindParam(":fk_id_studente", $_SESSION["user"]["id"]);
 
     $stmt->execute();
     header("Location: ../index.php");

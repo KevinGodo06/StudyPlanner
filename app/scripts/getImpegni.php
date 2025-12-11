@@ -16,7 +16,7 @@
     }
 
     $stmt = $pdo->prepare("SELECT * FROM Impegno WHERE fk_id_studente = :fk_id_studente");
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"]);
     $stmt->execute();
 
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

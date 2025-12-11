@@ -4,6 +4,7 @@ var sidebarButtonPrecedente = "";
 
 $(document).ready(function() {
     $(".container-aggiungi-obiettivo").hide();
+    $(".container-dettagli-obiettivo").hide();
     
     $("#add-button-calendario").click(function() {
         $(".container-aggiungi-impegno").fadeIn(500);
@@ -20,6 +21,7 @@ $(document).ready(function() {
         $(".container-aggiungi-voto").hide();
         $(".container-aggiungi-impegno-background").hide();
         $(".container-aggiungi-obiettivo").hide();
+        $(".container-dettagli-obiettivo").hide();
     });
 
 
@@ -31,6 +33,7 @@ $(document).ready(function() {
         $(".container-aggiungi-voto").fadeOut(500);
         $(".container-aggiungi-impegno-background").fadeOut(500);
         $(".container-aggiungi-obiettivo").fadeOut(500);
+        $(".container-dettagli-obiettivo").fadeOut(500);
     });
 
 
@@ -41,6 +44,7 @@ $(document).ready(function() {
         $(".container-aggiungi-voto").fadeOut(500);
         $(".container-aggiungi-impegno-background").fadeOut(500);
         $(".container-aggiungi-obiettivo").fadeOut(500);
+        $(".container-dettagli-obiettivo").fadeOut(500);
     });
 
     $("#add-button-materia").click(function() {
@@ -55,9 +59,14 @@ $(document).ready(function() {
         $("#aggiungi-voto-button").val("Aggiungi");
     });
 
-    $("#add-button-obiettivo").click(function() {
+    $(".imposta-obiettivo").click(function() {
         $(".container-aggiungi-obiettivo").fadeIn(500);
         $(".container-aggiungi-impegno-background").fadeIn(500);
+    });
+
+    $(".dettagli-obiettivo").click(function() {
+        $(".container-dettagli-obiettivo").fadeIn(500);
+        $(".container-dettagli-impegno-background").fadeIn(500);
     });
 
 

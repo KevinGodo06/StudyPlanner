@@ -28,9 +28,9 @@
   <link href="css/font-awesome.min.css" rel="stylesheet" />
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css?v=<?php echo time(); ?>" rel="stylesheet" />
+  <link href="css/style.css?v=<?php echo time(); ?>" rel="stylesheet"/>
   <!-- responsive style -->
-  <link href="css/responsive.css?v=<?php echo time(); ?>" rel="stylesheet" />
+  <link href="css/responsive.css?v=<?php echo time(); ?>" rel="stylesheet"/>
   <!-- scrollbar custom -->
   <link rel="stylesheet" href="app/styles/scrollbar.css">
   
@@ -218,12 +218,12 @@
             <h3>
                Chi siamo
             </h3>
-            <p>
-            Noi di StudyPlanner crediamo che l'organizzazione sia la chiave per il successo nello studio. La nostra missione è offrire agli studenti uno strumento semplice, intuitivo e completo per pianificare il loro percorso accademico in modo efficace.
-
-Abbiamo creato StudyPlanner per aiutarti a tenere sotto controllo impegni, lezioni e voti, offrendoti una visione chiara dei tuoi progressi. Che tu sia uno studente delle superiori o all'università, il nostro obiettivo è semplificarti la vita e darti il controllo del tuo tempo.
-
-Unisciti a noi e trasforma il tuo modo di studiare: più organizzazione, meno stress, migliori risultati!
+            <p class="text-justify">
+              Noi di StudyPlanner crediamo che l'organizzazione sia la chiave per il successo nello studio.
+              La nostra missione è offrire agli studenti uno strumento semplice, intuitivo e completo per pianificare il loro percorso accademico in modo efficace.
+              Abbiamo creato StudyPlanner per aiutarti a tenere sotto controllo impegni, lezioni e voti, offrendoti una visione chiara dei tuoi progressi.
+              Che tu sia uno studente delle superiori o all'università, il nostro obiettivo è semplificarti la vita e darti il controllo del tuo tempo.
+              Unisciti a noi e trasforma il tuo modo di studiare: più organizzazione, meno stress, migliori risultati!
             </p>
           </div>
         </div>
@@ -245,7 +245,7 @@ Unisciti a noi e trasforma il tuo modo di studiare: più organizzazione, meno st
       <div class="row">
         <div class="col-md-6 ">
           <div class="img-box">
-            <img src="images/about-img.png" alt="">
+            <img src="images/MethodMind.png" alt="">
           </div>
         </div>
         <div class="col-md-6">
@@ -253,7 +253,7 @@ Unisciti a noi e trasforma il tuo modo di studiare: più organizzazione, meno st
             <h3>
                Cos'è
             </h3>
-            <p>
+            <p class="text-justify">
               MethodMind è il risultato del nostro impegno come studenti di quinta superiore.
               Questo progetto finale, (realizzato da Samuele Bertelè e Alessandro Bosco) pensato per il nostro esame, nasce dalla passione per l'apprendimento
               e il desiderio di aiutare gli altri a ottimizzare il proprio tempo di studio.
@@ -277,7 +277,9 @@ Unisciti a noi e trasforma il tuo modo di studiare: più organizzazione, meno st
     <div class="container">
       <p>
         &copy; <span id="displayYear"></span> All Rights Reserved To
-        <a href="#">StudyPlanner</a>
+        <a class="mailLink" href="#">StudyPlanner</a>&emsp;&emsp;&emsp;
+        Contatti:
+        <a class="mailLink" href="mailto:studyplanner@altervista.org">studyplanner@altervista.org</a>
       </p>
     </div>
   </section>

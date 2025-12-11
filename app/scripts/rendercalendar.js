@@ -160,4 +160,72 @@ $(document).ready(function() {
             impegniRequest()
         }, 300);
     });
+
+    function caricaLista() {
+        $.ajax({
+            url: 'scripts/getImpegniNonCalendarizzati.php', // Sostituisci con il path corretto
+            method: 'GET',
+            dataType: 'json',
+            success: function (dati) {
+                $('#div-todolist').empty(); // Pulisce la lista esistente
+
+                if (dati.length === 0) {
+                    $('#div-todolist').append('<p>Nessun elemento nella lista.</p>');
+                    return;
+                }
+
+                dati.forEach(function (elemento) {
+                    const checked = elemento.checked == 1 ? 'checked' : '';
+                    const testoBarrato = elemento.checked == 1 ? 'text-decoration: line-through;' : '';
+
+                    const html = `
+                        <div class="elemento-lista" data-id="${elemento.ID}">
+                            <label>
+                                <input type="checkbox" class="checkbox-lista" data-id="${elemento.ID}" ${checked}>
+                                <span style="${testoBarrato}">${elemento.nome}</span>
+                            </label>
+                            <button class="btn-elimina" data-id="${elemento.ID}" style="margin-left: 10px; color: red; border: none; background: none; cursor: pointer;">✕</button>
+                        </div>
+                    `;
+                    $('#div-todolist').append(html);
+                });
+            },
+            error: function () {
+                $('#div-todolist').html('<p>Errore nel caricamento della lista.</p>');
+            }
+        });
+    }
+
+    caricaLista();
+
+    $('#div-todolist').on('change', '.checkbox-lista', function () {
+        const id = $(this).data('id');
+        const checked = $(this).is(':checked') ? 1 : 0;
+
+        $.ajax({
+            url: 'scripts/updateImpegniNonCalendarizzati.php',
+            method: 'POST',
+            data: { id: id, checked: checked },
+            success: function () {
+                caricaLista();
+            }
+        });
+    });
+
+    $('#div-todolist').on('click', '.btn-elimina', function () {
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: 'scripts/deleteImpegnoNonCalendarizzato.php',
+            method: 'POST',
+            data: { id: id },
+            success: function (response) {
+                console.log("Risposta dal server:", response);
+                caricaLista(); // ricarica la lista dopo l’eliminazione
+            },
+            error: function (xhr, status, error) {
+                alert("Errore durante l'eliminazione.");
+            }
+        });
+    });
 });

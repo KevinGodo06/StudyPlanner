@@ -48,7 +48,7 @@
     
 
     /*Calcolo media*/
-    $stmt = $pdo->prepare("SELECT voto, peso FROM Verifica WHERE fk_id_materia = :fk_id_materia");
+    /*$stmt = $pdo->prepare("SELECT voto, peso FROM Verifica WHERE fk_id_materia = :fk_id_materia");
     $stmt->bindParam(":fk_id_materia", $fk_id_materia, PDO::PARAM_INT);
     $stmt->execute();
     $votiPesati = $stmt->fetchAll();
@@ -64,7 +64,7 @@
     $stmt = $pdo->prepare("UPDATE Materia SET media = :media WHERE ID = :ID");
     $stmt->bindParam(":media", $media, PDO::PARAM_STR);
     $stmt->bindParam(":ID", $fk_id_materia, PDO::PARAM_INT);
-    $stmt->execute();
+    $stmt->execute();*/
 
 
     header("Location: ../index.php");

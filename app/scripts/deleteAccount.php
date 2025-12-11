@@ -16,7 +16,7 @@
     }
 
     $stmt = $pdo->prepare("SELECT * FROM Studente WHERE ID = :id");
-    $stmt->bindValue(":id", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":id", $_SESSION["user"]["id"]);
     if($stmt->execute()){
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if($result["ID"] != $_SESSION["user"]["id"]){
@@ -26,43 +26,37 @@
     }
 
     $stmt = $pdo->prepare("DELETE FROM OraLezione WHERE fk_id_studente = :fk_id_studente");
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"]);
     if($stmt->execute()){
         echo "oraLezione OK\n";
     }
 
-    $stmt = $pdo->prepare("DELETE FROM Verifica WHERE fk_id_studente = :fk_id_studente");
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt = $pdo->prepare("DELETE FROM Materia WHERE fk_id_studente = :fk_id_studente");
+    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"]);
     if($stmt->execute()){
         echo "Lezione OK\n";
     }
 
     // Elimina le righe dalla tabella Materia che non sono più collegate a nessuna verifica
-    $stmt = $pdo->prepare("DELETE FROM Materia WHERE id NOT IN (SELECT fk_id_materia FROM Verifica)");
+    $stmt = $pdo->prepare("DELETE FROM Verifica WHERE fk_id_materia NOT IN (SELECT ID FROM Materia)");
     if($stmt->execute()){
         echo "Materia OK\n";
     }
 
-    $stmt = $pdo->prepare("DELETE FROM Verifica WHERE fk_id_studente = :fk_id_studente");
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
-    if($stmt->execute()){
-        echo "verifica OK\n";
-    }
-
     $stmt = $pdo->prepare("DELETE FROM ElementoLista WHERE fk_id_studente = :fk_id_studente");
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"]);
     if($stmt->execute()){
         echo "lista OK\n";
     }
 
     $stmt = $pdo->prepare("DELETE FROM Impegno WHERE fk_id_studente = :fk_id_studente");
-    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":fk_id_studente", $_SESSION["user"]["id"]);
     if($stmt->execute()){
         echo "impegni OK\n";
     }
 
     $stmt = $pdo->prepare("DELETE FROM Studente WHERE ID = :id");
-    $stmt->bindValue(":id", $_SESSION["user"]["id"], PDO::PARAM_INT);
+    $stmt->bindValue(":id", $_SESSION["user"]["id"]);
     if($stmt->execute()){
         echo "delete OK\n";
     }

@@ -4,6 +4,16 @@
         header("Location: index.php");
         return;
     }
+
+    require_once '../googleAPI/vendor/autoload.php';
+    $client = new Google_Client();
+    $client->setClientId('');
+    $client->setClientSecret('');
+    $client->setRedirectUri('https://studyplanner.altervista.org/app/scripts/google-callback.php');
+    $client->addScope('email');
+    $client->addScope('profile');
+
+    $auth_url = $client->createAuthUrl();
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -61,6 +71,14 @@
                 
                 <input type="submit" name="accedi" value="Accedi">
             </form>
+            <a class="google-login" href="<?php echo htmlspecialchars($auth_url); ?>">
+                <div class="google-btn">
+                    <span class="google-icon-wrapper">
+                        <img height="24px"src="images/main icons/googleLogo.png" alt="Google icon">
+                    </span>
+                    <span>Accedi con Google</span>
+                </div>
+            </a>
 
             <p>Password dimenticata? <a href="ripristinoPassword.php">Ripristina</a></p>
             <p>Non hai ancora un account? <a href="registrazione.php">Registrati</a></p>

@@ -46,23 +46,6 @@ $(document).ready(function() {
             alert('Per favore carica un file JSON valido.');
         }
     });
-
-    $("#elimina-orario-button").click(function() {
-        giorniMappa = {
-            0: "Lunedì",
-            1: "Martedì",
-            2: "Mercoledì",
-            3: "Giovedì",
-            4: "Venerdì",
-            5: "Sabato"
-        };
-
-        for(var i = 0; i < 6; i++) {
-            for(var j = 0; j < 7; j++) {
-                orarioDELETE(j, giorniMappa[i]);
-            }
-        }
-    });
 });
 
 function orarioHTTPRequest() {

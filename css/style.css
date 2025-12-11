@@ -556,3 +556,12 @@ a:focus {
 #methodmindSection{
   background: linear-gradient(to top left, #00bcd4, #8e2de2);
 }
+
+.mailLink:hover{
+  color: #428CD3;
+  text-decoration: underline;
+}
+
+.text-justify{
+  text-align: justify;
+}

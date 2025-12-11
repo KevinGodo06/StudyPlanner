@@ -47,17 +47,30 @@
     $stmt = $pdo->prepare("SELECT * FROM Studente WHERE email = :email");
     $stmt->bindValue(":email", $email, PDO::PARAM_STR);
     $res = $stmt->execute();
-    $row = $stmt->fetchAll();
+    $row = $stmt->fetch();
 
-    if($row){
+    //controllo che non esista, o che se esista, le prime 4 lettere del campo imgProfilo non siano http
+    if($row && substr($row["imgProfilo"], 0, 4) != "http") {
         $_SESSION["errorRegistrationConfirm"] = "Email già registrata";
         header("Location: ../registrazione.php");
         return;
     }
 
+    $idProva;
+    do{
+        $idProva = rand() % 1000000000;
+        $_SESSION["idProva"] = $idProva;
+        $stmt = $pdo->prepare("SELECT * FROM Studente WHERE ID = :ID");
+        $stmt->bindValue(":ID", $idProva, PDO::PARAM_INT);
+        $res = $stmt->execute();
+        $row = $stmt->fetchAll();
+    } while($row);
+
 
     /*inserimento utente nel database*/
-    $stmt = $pdo->prepare("INSERT INTO Studente (email, nome, cognome, hashPassword, token) VALUES (:email, :nome, :cognome, :pwd, :token)");
+    $stmt = $pdo->prepare("INSERT INTO Studente (ID, email, nome, cognome, hashPassword, token) VALUES (:ID, :email, :nome, :cognome, :pwd, :token)");
+
+    $stmt->bindValue(":ID", $idProva);
 
     $stmt->bindValue(":email", $email, PDO::PARAM_STR);
 

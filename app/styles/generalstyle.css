@@ -12,6 +12,45 @@
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------*/
+.google-login{
+	text-decoration: none;
+}
+
+.google-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	color: #555;
+	border: 1px solid #ddd;
+	border-radius: 30px;
+	padding: 12.8px 16px;
+	font-size: 16px;
+	font-family: Roboto, sans-serif;
+	cursor: pointer;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	text-decoration: none;
+	transition: background 0.3s;
+	margin-top: 20px;
+	width: calc(100% - 2.1rem);
+}
+
+.google-btn:hover {
+	background-color: #f7f7f7;
+}
+
+.google-icon-wrapper {
+	width: 24px;
+	height: 24px;
+	margin-right: 12px;
+}
+
+.google-icon-wrapper img {
+	width: 100%;
+	height: 100%;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .main-content {
 	flex-grow: 1;
@@ -120,7 +159,7 @@
 .main-content-intestazione{
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: left;
 	margin-bottom: 20px;
 }
 
@@ -161,17 +200,28 @@
 }
 
 .div-add-button-obiettivo{
-	position: relative;
-	right: -195px;
-	bottom: 53px;
+    position: relative;
+	right: 54px;
 	z-index: 2;
+	width: 50px;
+}
+
+.imposta-obiettivo{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.nome-materia{
+	margin-right: 20px;
 }
 
 #p-obiettivo{
 	background-color: var(--azzurro-hover);
 	border-radius: 50px;
 	padding:  15px 60px 15px 30px;
-	position: absolute;
+	/*position: absolute;*/
 }
 
 .elimina-button{
@@ -186,7 +236,7 @@
 .main-content-calendario-todolist{
 	margin-left: 20px;
 	height: 100%;
-	flex-grow: 0.35;
+	flex-grow: 0.25;
 	border-radius: 30px;
 	background-color: var(--bianco);
 	box-shadow: 0 0 1px 0 var(--blu-ombra-item), 0 6px 12px 0 var(--blu-ombra-item);
@@ -222,6 +272,17 @@
 	height: max-content;
 }
 
+#div-todolist{
+	margin: 10px 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.elemento-lista{
+	margin: 10px 0;
+    font-size: 16px;
+	max-width: 90%;
+}
 /*------------------------------------------------------------Fine sezione impegni--------------------------------------------------------------------*/
 
 
@@ -270,7 +331,7 @@
 .main-content-voti-grafico{
 	background-color: var(--bianco);
 	box-shadow: 0 0 1px 0 var(--blu-ombra-item), 0 6px 12px 0 var(--blu-ombra-item);
-	border-radius: 30px;
+	border-radius: 20px;
 	margin-bottom: 20px;
 	max-width: 911.55px;
 	max-height: 462.77px;
@@ -350,8 +411,18 @@
 	font-size: 18px;
 }
 
-.data-voto, .id-voto{
+.data-voto, .id-voto, .id-materia{
 	display: none;
+}
+
+#andamento-materia-crescita{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.nome-voto{
+	max-width: 80px;
 }
 
 /*------------------------------------------------------------Fine sezione voti---------------------------------------------------------------------*/
@@ -372,7 +443,8 @@
 .container-aggiungi-lezione, 
 .container-aggiungi-materia,
 .container-aggiungi-voto,
-.container-aggiungi-obiettivo{
+.container-aggiungi-obiettivo,
+.container-dettagli-obiettivo{
 	background-color: var(--bianco);
 	box-shadow: 0 0 1px 0 var(--blu-ombra-item), 0 6px 12px 0 var(--blu-ombra-item);
 	border-radius: 30px;
@@ -383,10 +455,54 @@
     top: 50%;
     left: 50%;
 	width: 40%;
-	height: 30%;
+	/*height: 30%;*/
     transform: translate(-50%, -50%);
 	min-width: 550px;
-	min-height: 660px;
+}
+
+.container-aggiungi-impegno{
+	min-height: 670px;
+}
+
+.container-aggiungi-lezione{
+	min-height: 350px;
+}
+
+.container-aggiungi-materia{
+	min-height: 240px;
+}
+
+.container-aggiungi-voto{
+	min-height: 350px;
+}
+
+#par-obiettivo{
+	width: 100%;
+	text-align: center;
+	padding: 30px 0px;
+}
+
+.result-dettagli-obiettivo{
+	width: 100%;
+	text-align: center;
+	padding: 30px 0px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+#voto1, #voto2, #voto3{
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	background-color: green;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	margin-left: 30px;
+	margin-right: 5px;
 }
 
 .content-aggiungi-impegno, 
@@ -490,6 +606,27 @@
 	margin-left: 50px;
 }
 
+.content-applicazione {
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.impostazioni-button {
+	margin-top: 20px;
+	text-align: center;
+	padding: 10px 20px;
+	margin-left: 0px !important;
+}
+
+.sub-div-title{
+	margin-top: 50px;
+	width: 75%;
+	margin-left: 12.5%;
+	text-align: center;
+}
+
 /*-------------------------------------------------------------Fine Impostazioni----------------------------------------------------------------*/
 
 /*canvas*/
@@ -502,3 +639,5 @@
 	background-color: var(--azzurro-sfondo-form);
 	border-radius: 30px;
 }
+
+/*correzioni*/
